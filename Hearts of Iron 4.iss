@@ -4,7 +4,7 @@
 #define GameName "Hearts of Iron 4"                                          ; Название игры
 #define GameNameDash "Hearts-of-Iron-4"                                          ; Название игры
 #define GameNameEXE "hoi4"                                                              ; Название exe файла игры
-#define GameVer "1.13"                                                                     ; Версия игры
+#define GameVer "1.14"                                                                     ; Версия игры
 #define GameAppIdSteam "394360"                                                             ; Ид игры в стиме
 ; От ситуации зависит
 #define AppDescription "DLC для Hearts of Iron 4"                                     ; Описание программы
@@ -91,6 +91,8 @@ WizardImageFile={#Location}\Pic.bmp
 WizardSmallImageFile={#Location}\Pic.bmp
 
 [Components]
+Name: "crack"; Description: "Crack"; Flags: checkablealone; Types: full compact
+Name: "soundtrack"; Description: "SoundTrack"; Flags: checkablealone; Types: full
 Name: "dlc"; Description: "DLC";                                    Flags: checkablealone; Types: full
 Name: "dlc\001"; Description: "Historical German Portraits";        Flags: checkablealone; Types: full compact
 Name: "dlc\002"; Description: "Poland: United and Ready";           Flags: checkablealone; Types: full compact
@@ -131,15 +133,16 @@ Name: "dlc\036"; Description: "By Blood Alone";                     Flags: check
 Name: "dlc\037"; Description: "By Blood Alone Preorder Bonus";      Flags: checkablealone; Types: full compact
 Name: "dlc\038"; Description: "Arms Against Tyranny";               Flags: checkablealone; Types: full compact
 Name: "dlc\039"; Description: "AAT - Säkkijärven Polkka";           Flags: checkablealone; Types: full compact
-
-Name: "crack"; Description: "Crack"; Flags: checkablealone; Types: full compact
+Name: "dlc\040"; Description: "Trial of Allegiance";                Flags: checkablealone; Types: full compact
+Name: "dlc\041"; Description: "Trial of Allegiance Pre-order Bonus";Flags: checkablealone; Types: full compact
 
 [Files]
 ; Ресурсы
 ;Source: {#Location}\{#GameName}\dlc\*; DestDir: "{app}\dlc"; Components: dlc; Flags: ignoreversion recursesubdirs createallsubdirs
 ;Source: {#Location}\{#GameName}\crack\*; DestDir: "{app}"; Components: crack; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: {#Location}\{#FolderUnArcivProg}\*; DestDir: "{tmp}"; Flags: deleteafterinstall
-Source: "{tmp}\Crack-Hearts-of-Iron-4.zip";                       DestDir: "{tmp}"; Components: crack;   Flags: external deleteafterinstall; ExternalSize: 479076
+Source: "{tmp}\Crack.zip";                       DestDir: "{tmp}"; Components: crack;   Flags: external deleteafterinstall; ExternalSize: 479076
+Source: "{tmp}\soundtrack.zip";                                  DestDir: "{tmp}"; Components: soundtrack;   Flags: external deleteafterinstall; ExternalSize: 38994473
 Source: "{tmp}\dlc001_german_historical_portraits.zip";           DestDir: "{tmp}"; Components: dlc\001; Flags: external deleteafterinstall; ExternalSize: 1058134
 Source: "{tmp}\dlc002_polish_content_pack.zip";                   DestDir: "{tmp}"; Components: dlc\002; Flags: external deleteafterinstall; ExternalSize: 2508106
 Source: "{tmp}\dlc003_rocket_launcher_unit_pack.zip";             DestDir: "{tmp}"; Components: dlc\003; Flags: external deleteafterinstall; ExternalSize: 2454874
@@ -178,6 +181,8 @@ Source: "{tmp}\dlc036_by_blood_alone.zip";                        DestDir: "{tmp
 Source: "{tmp}\dlc037_by_blood_alone_preorder_bonus.zip";	        DestDir: "{tmp}"; Components: dlc\037; Flags: external deleteafterinstall; ExternalSize: 10087965
 Source: "{tmp}\dlc038_arms_against_tyranny.zip";	                DestDir: "{tmp}"; Components: dlc\038; Flags: external deleteafterinstall; ExternalSize: 196320977
 Source: "{tmp}\dlc039_arms_against_tyranny_preorder_bonus.zip";	  DestDir: "{tmp}"; Components: dlc\039; Flags: external deleteafterinstall; ExternalSize: 2618379
+Source: "{tmp}\dlc040_trial_of_allegiance.zip";	                  DestDir: "{tmp}"; Components: dlc\040; Flags: external deleteafterinstall; ExternalSize: 110209784
+Source: "{tmp}\dlc041_trial_of_allegiance_preorder_bonus.zip";	  DestDir: "{tmp}"; Components: dlc\041; Flags: external deleteafterinstall; ExternalSize: 3833125
 
 
 [Icons]
@@ -194,7 +199,8 @@ Name: "{userdesktop}\Switcher Spacewar for {#GameName}"; Filename: "{app}\Switch
 Name: "DesktopIcon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Components: crack
 
 [Run]
-Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\Crack-Hearts-of-Iron-4.zip -y -o""{app}\""";                                             Components: crack 
+Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\Crack.zip -y -o""{app}\""";                                             Components: crack
+Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\soundtrack.zip -y -o""{app}\""";                                       Components: soundtrack 
 Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc001_german_historical_portraits.zip -y -o""{app}\dlc\""";            Components: dlc\001
 Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc002_polish_content_pack.zip -y -o""{app}\dlc\""";                    Components: dlc\002
 Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc003_rocket_launcher_unit_pack.zip -y -o""{app}\dlc\""";              Components: dlc\003
@@ -233,6 +239,8 @@ Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc036_by_blood_alone.zip
 Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc037_by_blood_alone_preorder_bonus.zip -y -o""{app}\dlc\""";	         Components: dlc\037 
 Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc038_arms_against_tyranny.zip -y -o""{app}\dlc\""";	                 Components: dlc\038 
 Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc039_arms_against_tyranny_preorder_bonus.zip -y -o""{app}\dlc\""";	   Components: dlc\039 
+Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc040_trial_of_allegiance.zip -y -o""{app}\dlc\""";	                   Components: dlc\040 
+Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc041_trial_of_allegiance_preorder_bonus.zip -y -o""{app}\dlc\""";	   Components: dlc\041 
 
 [UninstallDelete]
 Type: files; 		  Name: "{app}\cream_api.ini";                                         Components: crack  
@@ -242,7 +250,8 @@ Type: files; 		  Name: "{app}\steam_api64.dll";                                 
 Type: files; 		  Name: "{app}\steam_api64_org_game.dll";                              Components: crack  
 Type: files; 		  Name: "{app}\steam_api64_org_launcher.dll";                          Components: crack  
 Type: files; 		  Name: "{app}\SWconfig.ini";                                          Components: crack  
-Type: files; 		  Name: "{app}\Switcher Spacewar.exe";                                 Components: crack  
+Type: files; 		  Name: "{app}\Switcher Spacewar.exe";                                 Components: crack
+Type: filesandordirs; Name: "{app}\soundtrack";                                       Components: soundtrack  
 Type: filesandordirs; Name: "{app}\dlc\dlc001_german_historical_portraits";            Components: dlc\001
 Type: filesandordirs; Name: "{app}\dlc\dlc002_polish_content_pack";                    Components: dlc\002
 Type: filesandordirs; Name: "{app}\dlc\dlc003_rocket_launcher_unit_pack";              Components: dlc\003
@@ -281,6 +290,8 @@ Type: filesandordirs; Name: "{app}\dlc\dlc036_by_blood_alone";                  
 Type: filesandordirs; Name: "{app}\dlc\dlc037_by_blood_alone_preorder_bonus";	         Components: dlc\037
 Type: filesandordirs; Name: "{app}\dlc\dlc038_arms_against_tyranny";	                 Components: dlc\038
 Type: filesandordirs; Name: "{app}\dlc\dlc039_arms_against_tyranny_preorder_bonus";	   Components: dlc\039
+Type: filesandordirs; Name: "{app}\dlc\dlc040_trial_of_allegiance";	                   Components: dlc\040
+Type: filesandordirs; Name: "{app}\dlc\dlc041_trial_of_allegiance_preorder_bonus";	   Components: dlc\041
 
 [Code]
 var
@@ -329,12 +340,17 @@ function NextButtonClick(CurPageID: Integer): Boolean;
 begin
   if CurPageID = wpReady then begin
     DownloadPage.Clear;
-
+    if IsComponentSelected('crack') then begin
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.14/Crack.zip', 'Crack.zip', '16218e0c6d3002de9f038cdb9ef0022db21b47836dbcf42db96207dfa300ddc8');
+    end;
+    if IsComponentSelected('soundtrack') then begin
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.14/soundtrack.zip', 'soundtrack.zip', 'db56db5fa43a47f3a1edb7b3d645045edd872964f89ea1f42e83da97cfe701c4');
+    end;
     if IsComponentSelected('dlc/001') then begin
       DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.11/dlc001_german_historical_portraits.zip', 'dlc001_german_historical_portraits.zip', 'D05B6C63F2D448A0F39A46FD40AC138CFB519C8F9818539834A8489D23408D53');
     end;
     if IsComponentSelected('dlc/002') then begin
-      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.13/dlc002_polish_content_pack.zip', 'dlc002_polish_content_pack.zip', 'c77b1eb8ddbcaba028a35dca87b7d5bed91e89d71aac02f64e10565765c75425');
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.14/dlc002_polish_content_pack.zip', 'dlc002_polish_content_pack.zip', 'bc33a85c842493512c7dcf2a7965ba6185a039753ce10dc0bc411ad1407050c3');
     end;
     if IsComponentSelected('dlc/003') then begin
       DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.11/dlc003_rocket_launcher_unit_pack.zip', 'dlc003_rocket_launcher_unit_pack.zip', 'B9D293F6FACAC5F66BCBE53099C61E544B25AA7FC72F5246A8A9339B5016F1B7');
@@ -349,16 +365,16 @@ begin
       DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.13/dlc006_soviet_tanks_unit_pack.zip', 'dlc006_soviet_tanks_unit_pack.zip', 'f291e0a079bb15e380eb0482089ec06d59e6a8d2282a2e9106ee92de6ba2b57b');
     end;
     if IsComponentSelected('dlc/007') then begin
-      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.13/dlc007_german_tanks_unit_pack.zip', 'dlc007_german_tanks_unit_pack.zip', '7f6839404531b2410f103ec3eab9de37af7e5341926a35700541e1cd448cdae4');
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.14/dlc007_german_tanks_unit_pack.zip', 'dlc007_german_tanks_unit_pack.zip', '23d102a8976ba03d352854b914553ca25a398ded393f4f3767b67d241a28876c');
     end;
     if IsComponentSelected('dlc/008') then begin
-      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.13/dlc008_french_tanks_unit_pack.zip', 'dlc008_french_tanks_unit_pack.zip', 'b308f45e588c6151b2c71334dd108bab9d8ed8e55151c2445e7a01e9d1a76e72');
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.14/dlc008_french_tanks_unit_pack.zip', 'dlc008_french_tanks_unit_pack.zip', 'a0266929cdd9782430e2f2ed4359253911b48a8670bfa4c26afc34a07466704f');
     end;
     if IsComponentSelected('dlc/009') then begin
-      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.13/dlc009_british_tanks_unit_pack.zip', 'dlc009_british_tanks_unit_pack.zip', 'aaebbb4050cfebf0c52086ecabd2f1b96e45912eb1ac0a403b13c9fcc35da49d');
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.14/dlc009_british_tanks_unit_pack.zip', 'dlc009_british_tanks_unit_pack.zip', '5637754034fe79f399d891450b8dbe7fc0f31e486a4e34ce2fab60d45890a9ff');
     end;
     if IsComponentSelected('dlc/010') then begin
-      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.13/dlc010_us_tanks_unit_pack.zip', 'dlc010_us_tanks_unit_pack.zip', 'fe029f3e19d4687938278a96ea7f7afee7092944d355518fcafd138bebb66a6b');
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.14/dlc010_us_tanks_unit_pack.zip', 'dlc010_us_tanks_unit_pack.zip', '8fc47933b8ca36646f3642a779d99745a9b01494e689a989d6196904a98ffebd');
     end;
     if IsComponentSelected('dlc/011') then begin
       DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.11/dlc011_german_march_order_music_pack.zip', 'dlc011_german_march_order_music_pack.zip', 'BC7F2F2DB7A8E8681533AABEED8F6FD26F6CF79C627F8A66DAE43B7D40B80013');
@@ -394,13 +410,13 @@ begin
       DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.13/dlc022_waking_the_tiger.zip', 'dlc022_waking_the_tiger.zip', '8c27b53e9de66d8ec8316cc2ac45203009e56c67bc400e54265761d925b4b35e');
     end;
     if IsComponentSelected('dlc/023') then begin
-      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.13/dlc023_man_the_guns.zip', 'dlc023_man_the_guns.zip', 'eb9d3cba0d9f523500ff0e451a9fda3b99b958362c5aa6d88c7f5cae371bfa99');
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.14/dlc023_man_the_guns.zip', 'dlc023_man_the_guns.zip', '2538431d7abcd4e03fead251fa89826d9f65498ddf982305fdb98310a7bae264');
     end;
     if IsComponentSelected('dlc/024') then begin
       DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.12/dlc024_man_the_guns_wallpaper.zip', 'dlc024_man_the_guns_wallpaper.zip', '33DFA5C06A36D06E5EB45EFB37AB14555B7E8D3628BC7F854E2C89FFBBEBCEEE');
     end;
     if IsComponentSelected('dlc/025') then begin
-      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.13/dlc025_axis_armor_pack.zip', 'dlc025_axis_armor_pack.zip', '28e3f8e5cd3cf8e3ae44b950667807bb403049b275634b7ec786ab9ce22e62e6');
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.14/dlc025_axis_armor_pack.zip', 'dlc025_axis_armor_pack.zip', '48e9b1144655f30cdf798d66a8f1c1ac32714a772f418da3e257457df1b57f5d');
     end;
     if IsComponentSelected('dlc/026') then begin
       DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.11/dlc026_radio_pack.zip', 'dlc026_radio_pack.zip', '1A826EAF76A9D82CEAE145996D79871EF765E4D4E348B15B0CE84EB775AB73D4');
@@ -409,16 +425,16 @@ begin
       DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.11/dlc027_la_resistance_preorder_bonus.zip', 'dlc027_la_resistance_preorder_bonus.zip', '08F849747978E87E1E000F8EEAC76EF4D3DE2C491B080171627AA5FDA29E2564');
     end;
     if IsComponentSelected('dlc/028') then begin
-      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.13/dlc028_la_resistance.zip', 'dlc028_la_resistance.zip', '57ba154e423b884c0e2bd47b7432f64297728ab27d5c39b7a84572ed73fc7c55');
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.14/dlc028_la_resistance.zip', 'dlc028_la_resistance.zip', '2a09a578e68848e5a7cef420c8529d56b69b03be5071c0447d5bf51ac6d76b7d');
     end;
     if IsComponentSelected('dlc/029') then begin
-      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.13/dlc029_allied_armor_pack.zip', 'dlc029_allied_armor_pack.zip', '8bdb6b2bb0a0214f5f639b8dad03d9f77dcd4329487ca8b19d89c6fa302fd050');
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.14/dlc029_allied_armor_pack.zip', 'dlc029_allied_armor_pack.zip', 'b3c18371b0707f8d2e9f1ab23c76a1e3c4d7c905f138fb466ef85603f537fa09');
     end;
     if IsComponentSelected('dlc/030') then begin
       DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.11/dlc030_allied_speeches_pack.zip', 'dlc030_allied_speeches_pack.zip', '2EFFDBBB983174B0D89218329631789B7B7E907EA4D8992C477E1FC91198BE29');
     end;
     if IsComponentSelected('dlc/031') then begin
-      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.13/dlc031_battle_for_the_bosporus.zip', 'dlc031_battle_for_the_bosporus.zip', 'e56789a27c4d29c2b49b910ba91db35c9ccba872d91a6bca69f01afde548934b');
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.14/dlc031_battle_for_the_bosporus.zip', 'dlc031_battle_for_the_bosporus.zip', 'd251c0b3c2cbe68c91d7a9b766e61216aab7166d42ae223e9ac4f3c7d1a1fb65');
     end;
     if IsComponentSelected('dlc/032') then begin
       DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.13/dlc032_eastern_front_planes_pack.zip', 'dlc032_eastern_front_planes_pack.zip', 'b9027fdd38c851f699246ba202c107cbb9923b08279c841e63d4a81717e87577');
@@ -427,25 +443,28 @@ begin
       DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.11/dlc033_songs_of_the_eastern_front.zip', 'dlc033_songs_of_the_eastern_front.zip', '500BB83583B04CF1B3CDF2E72BE3D734C82828578FE41E06351B996A6A16CD87');
     end;
     if IsComponentSelected('dlc/034') then begin
-      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.11/dlc034_no_step_back.zip', 'dlc034_no_step_back.zip', '216359AE70D3C7E79207C47A86A5E24B5B04C1F2F564033C8BE7CF5680956BAF');
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.14/dlc034_no_step_back.zip', 'dlc034_no_step_back.zip', '2b7377885396360e73ccde8b9982ed155bfdb8ee305274b3d313a23ee0cce539');
     end;
     if IsComponentSelected('dlc/035') then begin
       DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.12/dlc035_no_step_back_preorder_bonus.zip', 'dlc035_no_step_back_preorder_bonus.zip', '5688FCB9F2BD8070B6C994D7B54F7AAF824667225A701ECDB7812FE3B14A9418');
     end;
     if IsComponentSelected('dlc/036') then begin
-      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.13/dlc036_by_blood_alone.zip', 'dlc036_by_blood_alone.zip', 'aac463fd99e7454209fed59ce0c6f911aac2b3988b6e1a525c76f8d0aa3f1218');
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.14/dlc036_by_blood_alone.zip', 'dlc036_by_blood_alone.zip', '72856ace9589fabe69083f9cf4f87247e9bf4fdf190f13f3f4678b83a26ac5d0');
     end;
     if IsComponentSelected('dlc/037') then begin
       DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.12/dlc037_by_blood_alone_preorder_bonus.zip', 'dlc037_by_blood_alone_preorder_bonus.zip', 'DD7115FB09AF5A8C73E27DA8192114FD664DF288CE63A3D483981576FED1CD29');
     end;
     if IsComponentSelected('dlc/038') then begin
-      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.13/dlc038_arms_against_tyranny.zip', 'dlc038_arms_against_tyranny.zip', '6df8e8e9cb3b1502090204bb648e4633bf23ed61b308deebcb0ab69427c7ec56');
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.14/dlc038_arms_against_tyranny.zip', 'dlc038_arms_against_tyranny.zip', '942f95a3197374439a124d4ab13d91ee2903926b828703134c3ec35110c1195c');
     end;
     if IsComponentSelected('dlc/039') then begin
       DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.13/dlc039_arms_against_tyranny_preorder_bonus.zip', 'dlc039_arms_against_tyranny_preorder_bonus.zip', '42693e7e25bf089b969dd80930538a545debad0bfb85c0d9fcbd16360f811b63');
+    end;    
+    if IsComponentSelected('dlc/040') then begin
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.14/dlc040_trial_of_allegiance.zip', 'dlc040_trial_of_allegiance.zip', '939e6ba2904e623bdb73e5ed5377ac9d778991ef8beb4e80237f993e62d3766c');
     end;
-    if IsComponentSelected('crack') then begin
-      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.13/Crack-Hearts-of-Iron-4.zip', 'Crack-Hearts-of-Iron-4.zip', 'b0c60c5ed307f0ed57f0be12d31852e4c32be5f72de07e92a7b388de44762959');
+    if IsComponentSelected('dlc/041') then begin
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.14/dlc041_trial_of_allegiance_preorder_bonus.zip', 'dlc041_trial_of_allegiance_preorder_bonus.zip', '83b451ead076f65e50433742303ce3d7a9dc7223e7fcd7d987d6ae36ab8b8ee6');
     end;   
     DownloadPage.Show;
     try
