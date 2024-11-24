@@ -4,7 +4,7 @@
 #define GameName "Hearts of Iron 4"                                          ; Название игры
 #define GameNameDash "Hearts-of-Iron-4"                                          ; Название игры
 #define GameNameEXE "hoi4"                                                              ; Название exe файла игры
-#define GameVer "1.14"                                                                     ; Версия игры
+#define GameVer "1.15"                                                                     ; Версия игры
 #define GameAppIdSteam "394360"                                                             ; Ид игры в стиме
 ; От ситуации зависит
 #define AppDescription "DLC для Hearts of Iron 4"                                     ; Описание программы
@@ -135,6 +135,10 @@ Name: "dlc\038"; Description: "Arms Against Tyranny";               Flags: check
 Name: "dlc\039"; Description: "AAT - Säkkijärven Polkka";           Flags: checkablealone; Types: full compact
 Name: "dlc\040"; Description: "Trial of Allegiance";                Flags: checkablealone; Types: full compact
 Name: "dlc\041"; Description: "Trial of Allegiance Pre-order Bonus";Flags: checkablealone; Types: full compact
+Name: "dlc\042"; Description: "Content Creator Pack - Soviet Union 2D Art";Flags: checkablealone; Types: full compact
+Name: "dlc\043"; Description: "Götterdämmerung";                    Flags: checkablealone; Types: full compact
+Name: "dlc\044"; Description: "Ride of the Valkyries";              Flags: checkablealone; Types: full compact
+Name: "dlc\045"; Description: "Supporter Pack";                     Flags: checkablealone; Types: full compact
 
 [Files]
 ; Ресурсы
@@ -183,6 +187,10 @@ Source: "{tmp}\dlc038_arms_against_tyranny.zip";	                DestDir: "{tmp}
 Source: "{tmp}\dlc039_arms_against_tyranny_preorder_bonus.zip";	  DestDir: "{tmp}"; Components: dlc\039; Flags: external deleteafterinstall; ExternalSize: 2618379
 Source: "{tmp}\dlc040_trial_of_allegiance.zip";	                  DestDir: "{tmp}"; Components: dlc\040; Flags: external deleteafterinstall; ExternalSize: 110209784
 Source: "{tmp}\dlc041_trial_of_allegiance_preorder_bonus.zip";	  DestDir: "{tmp}"; Components: dlc\041; Flags: external deleteafterinstall; ExternalSize: 3833125
+Source: "{tmp}\dlc042_content_creator_pack_soviet_union_2d_art.zip";	  DestDir: "{tmp}"; Components: dlc\042; Flags: external deleteafterinstall; ExternalSize: 3921168
+Source: "{tmp}\dlc043_gotterdammerung.zip";	                      DestDir: "{tmp}"; Components: dlc\043; Flags: external deleteafterinstall; ExternalSize: 283773475
+Source: "{tmp}\dlc044_expansion_pass_1_ride_of_the_valkyries.zip";	  DestDir: "{tmp}"; Components: dlc\044; Flags: external deleteafterinstall; ExternalSize: 1725281
+Source: "{tmp}\dlc045_expansion_pass_1_supporter_pack.zip";	      DestDir: "{tmp}"; Components: dlc\045; Flags: external deleteafterinstall; ExternalSize: 2149032
 
 
 [Icons]
@@ -241,6 +249,10 @@ Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc038_arms_against_tyran
 Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc039_arms_against_tyranny_preorder_bonus.zip -y -o""{app}\dlc\""";	   Components: dlc\039 
 Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc040_trial_of_allegiance.zip -y -o""{app}\dlc\""";	                   Components: dlc\040 
 Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc041_trial_of_allegiance_preorder_bonus.zip -y -o""{app}\dlc\""";	   Components: dlc\041 
+Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc042_content_creator_pack_soviet_union_2d_art.zip -y -o""{app}\dlc\""";	   Components: dlc\042 
+Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc043_gotterdammerung.zip -y -o""{app}\dlc\""";	   Components: dlc\043 
+Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc044_expansion_pass_1_ride_of_the_valkyries.zip -y -o""{app}\dlc\""";	   Components: dlc\044 
+Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc045_expansion_pass_1_supporter_pack.zip -y -o""{app}\dlc\""";	   Components: dlc\045 
 
 [UninstallDelete]
 Type: files; 		  Name: "{app}\cream_api.ini";                                         Components: crack  
@@ -292,6 +304,10 @@ Type: filesandordirs; Name: "{app}\dlc\dlc038_arms_against_tyranny";	           
 Type: filesandordirs; Name: "{app}\dlc\dlc039_arms_against_tyranny_preorder_bonus";	   Components: dlc\039
 Type: filesandordirs; Name: "{app}\dlc\dlc040_trial_of_allegiance";	                   Components: dlc\040
 Type: filesandordirs; Name: "{app}\dlc\dlc041_trial_of_allegiance_preorder_bonus";	   Components: dlc\041
+Type: filesandordirs; Name: "{app}\dlc\dlc042_content_creator_pack_soviet_union_2d_art";	   Components: dlc\042
+Type: filesandordirs; Name: "{app}\dlc\dlc043_gotterdammerung";	                       Components: dlc\043
+Type: filesandordirs; Name: "{app}\dlc\dlc044_expansion_pass_1_ride_of_the_valkyries"; Components: dlc\044
+Type: filesandordirs; Name: "{app}\dlc\dlc045_expansion_pass_1_supporter_pack";	       Components: dlc\045
 
 [Code]
 var
@@ -465,7 +481,19 @@ begin
     end;
     if IsComponentSelected('dlc/041') then begin
       DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.14/dlc041_trial_of_allegiance_preorder_bonus.zip', 'dlc041_trial_of_allegiance_preorder_bonus.zip', '83b451ead076f65e50433742303ce3d7a9dc7223e7fcd7d987d6ae36ab8b8ee6');
-    end;   
+    end; 
+    if IsComponentSelected('dlc/042') then begin
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.15/dlc042_content_creator_pack_soviet_union_2d_art.zip', 'dlc042_content_creator_pack_soviet_union_2d_art.zip', 'fc83531094c64b7c3a6966d63a7da203269e2f3f568039fd84b6c52c0d31e059');
+    end;
+    if IsComponentSelected('dlc/043') then begin
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.15/dlc043_gotterdammerung.zip', 'dlc043_gotterdammerung.zip', '6f3a6bbb5e28aefb483d5ce126213701819d43356a70d7c576c3184132a075ee');
+    end;
+    if IsComponentSelected('dlc/044') then begin
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.15/dlc044_expansion_pass_1_ride_of_the_valkyries.zip', 'dlc044_expansion_pass_1_ride_of_the_valkyries.zip', '5cc7314b08c40358d16a260391bf6dd0580d50b4ad8680b4fbb038fa2c589d06');
+    end;
+    if IsComponentSelected('dlc/045') then begin
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Hearts-of-Iron-4-DLC/releases/download/1.15/dlc045_expansion_pass_1_supporter_pack.zip', 'dlc045_expansion_pass_1_supporter_pack.zip', 'b3f43fa4151c58b850b67f2ad3a76b82eb7f64e238aec7a2e30bcab2babea6a7');
+    end;  
     DownloadPage.Show;
     try
       try
